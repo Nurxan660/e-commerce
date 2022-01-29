@@ -1,0 +1,18 @@
+footer{
+    background-color: #212529;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: auto;
+}
+.footer{
+    color: #6c757d
+    
+    
+}
+main{
+    min-height: inherit;
+}
+

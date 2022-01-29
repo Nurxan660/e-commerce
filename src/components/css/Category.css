@@ -1,0 +1,43 @@
+.category{
+    display: flex;
+    flex-direction: column;
+    
+    flex-wrap: wrap;
+    margin-top: 90px;
+    margin:90px 90px 90px 90px
+    
+
+}
+.category-name{
+    display: flex;
+    justify-content: flex-start;
+    padding: 15px;
+    background-color: #e7e7e7;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #212529;
+
+}
+.category-content{
+    margin-top:20px;
+
+}
+.category-filter{
+}
+.filter-content{
+    list-style: none;
+  padding: 8px;
+  margin: 0;
+  border:  1px solid #dee2e6;
+ border-radius: 0.25rem;
+  width: 214px;
+  
+
+}
+
+
+label{
+    margin-left: 5px;
+}
+.form-check{
+    margin-top: 7px;
+}
