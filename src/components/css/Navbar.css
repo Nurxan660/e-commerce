@@ -1,13 +1,11 @@
 
-body{
+body,html{
     margin:0;
     padding:0;
    
 }
-html,body{
- height: 100%;
-    
-}
+
+
 #root{
   display: flex;
   flex-direction: column;
@@ -22,6 +20,7 @@ header{
     z-index: 5;
     width: 100%;
     background-color: white;
+    margin: 0;
 }
 .navbar{
     display: flex;

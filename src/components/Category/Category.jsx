@@ -1,47 +1,29 @@
 import React from 'react';
 import "../css/Category.css";
+import CategoryCarts from './CategoryCarts.jsx'
+import CategoryFilterItem from './CategoryFilterItem.jsx'
+import Pagination from '../Pagination/Pagination.jsx'
+import ItemsByCategory from '../../store/itemsByCategory';
+import { observer } from 'mobx-react-lite';
+import PaginationStore from '../../store/paginationStore';
 
-function Category() {
-    const itemsByCategory = [
+
+const Category = observer(() => {
+    const items = [
         {
-            categoryName:"Smartphones",
-            name: "Iphone 10",
-            price: 100000,
-            src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWdH85zH6khXpdIle6YSTwlQ907seyWbU2d_Fm6UP0W1H3kPvh&s"
+            categoryFilterName: "Brand",
+            categoryFilterItems: ["Apple", "Samsung", "Redmi"]
         },
         {
-            categoryName: "Smartphones",
-            name: "Iphone 11",
-            price: 100000,
-            src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWdH85zH6khXpdIle6YSTwlQ907seyWbU2d_Fm6UP0W1H3kPvh&s"
-        },
-        {
-            categoryName: "Smartphones",
-            name: "Iphone 12",
-            price: 100000,
-            src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWdH85zH6khXpdIle6YSTwlQ907seyWbU2d_Fm6UP0W1H3kPvh&s"
-        },
-        {
-            categoryName: "Smartphones",
-            name: "Iphone 13",
-            price: 100000,
-            src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWdH85zH6khXpdIle6YSTwlQ907seyWbU2d_Fm6UP0W1H3kPvh&s"
-        },
-        {
-            categoryName: "Smartphones",
-            name: "Iphone 8",
-            price: 100000,
-            src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWdH85zH6khXpdIle6YSTwlQ907seyWbU2d_Fm6UP0W1H3kPvh&s"
-        },
-        {
-            categoryName: "Smartphones",
-            name: "Iphone 9",
-            price: 100000,
-            src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWdH85zH6khXpdIle6YSTwlQ907seyWbU2d_Fm6UP0W1H3kPvh&s"
-        },
+            categoryFilterName: "Ram",
+            categoryFilterItems: ["2", "4", "8","16"]
+        }
     ]
+
+  
     
   return (
+      <>
       <div className="category">
           <div className="category-name">
               <span>All products / Phones</span>
@@ -49,29 +31,33 @@ function Category() {
           <div className="category-content">
               <div className="category-filter">
                   <ul className="filter-content">
-                      <li className="filter-content-item">
-                          <h3>Brands</h3>
-                          <div className="flex-check">
-                              <div className="form-check">
-                                  <input className="form-check-input" type="checkbox" id="apple" name="horns"/>
-                                      <label for="horns">Apple</label>
+                      {items.map((i)=>{
+                      return <CategoryFilterItem item={i}/>
+                     })}
+                      <li className="filter-content-item" id="price-range">
+                          <h3>Price Range</h3>
+                          <div className="price-range-content">
+                              <div className="min-price-content">
+                                  <input className="price-range"type="text" placeholder='Min Price'/>
+                                
                               </div>
-                              <div className="form-check">
-                                  <input className="form-check-input" type="checkbox" id="apple" name="horns" />
-                                  <label for="horns">Samsung</label>
+                              <div className="max-price-content">
+                                  <input className="price-range" type="text" placeholder='Max Price' />
                               </div>
-                              <div className="form-check">
-                                  <input className="form-check-input" type="checkbox" id="apple" name="horns" />
-                                  <label for="horns">Redmi</label>
+                              <div className="apply-button">
+                              <button className="filter-button">Apply</button>
                               </div>
-
                           </div>
                       </li>
                   </ul>
               </div>
+
+                  <CategoryCarts items={PaginationStore.currentItems} />
           </div>
       </div>
+          <Pagination data={ItemsByCategory.allItems} />
+      </>
   );
-}
+})
 
 export default Category;

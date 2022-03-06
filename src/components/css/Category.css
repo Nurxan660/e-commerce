@@ -1,10 +1,10 @@
 .category{
     display: flex;
     flex-direction: column;
-    
+    min-height:inherit;
     flex-wrap: wrap;
     margin-top: 90px;
-    margin:90px 90px 90px 90px
+    margin:90px 90px 90px 90px;
     
 
 }
@@ -18,20 +18,38 @@
 
 }
 .category-content{
+    display: flex;
+
+    width: 100%;
     margin-top:20px;
 
 }
-.category-filter{
-}
+
 .filter-content{
     list-style: none;
-  padding: 8px;
+  padding:0px 0;
   margin: 0;
-  border:  1px solid #dee2e6;
+  ;
  border-radius: 0.25rem;
-  width: 214px;
+  width: 100%;
+  max-width: 314px;
   
+}
 
+.category-filter{
+    width: 214px;
+    flex-shrink: 0;
+    margin-top: 30px;
+}
+.filter-content-item{
+    padding: 8px 8px;
+    border-left:  1px solid #dee2e6;
+    border-right:  1px solid #dee2e6;
+    border-top:  1px solid #dee2e6;
+    
+}
+#price-range.filter-content-item{
+border-bottom:1px solid #dee2e6; 
 }
 
 
@@ -40,4 +58,92 @@ label{
 }
 .form-check{
     margin-top: 7px;
+}
+.price-range{
+    padding: 7px;
+    margin-top: 5px;
+    width: 100%;
+}
+.apply-button{
+    margin-top: 5px;
+    height: 31px;
+    
+    
+}
+.filter-button:hover{
+  background-color: black;
+}
+.filter-button{
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    background-color: #212529;
+    border-color: #212529;
+    cursor: pointer;
+}
+
+
+.category-carts-items{
+    display: flex;
+    flex-wrap:wrap;
+    width: 100%;
+    padding: 0px;
+   
+}
+.category-cart-item{
+    margin-left: 20px;
+    margin-top: 30px;
+    padding-bottom: 10px;
+    border: 1px solid rgba(0,0,0,.125) ;
+    border-radius: 7px;
+}
+.category-cart-item-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.category-cart-item-name,
+.category-cart-item-price,
+.category-cart-item-button{
+    margin-top: 10px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.category-cart-item-name{
+    font-weight: bold;
+    font-size: 20px;
+}
+.category-cart-item-price{
+    color: #6c757d
+}
+.category-cart-item-button{
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 5px 100px 5px 100px;
+    
+}
+.category-cart-item-button:hover{
+    background-color: #343a40;
+    color: white;
+}
+
+
+@media  screen and (max-width:711px) {
+
+ .category-cart-item .category-cart-item-photo{
+        width: 238px;
+    }
+    .category-cart-item-button{
+        padding: 5px 50px;
+    }
+    .category-content{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .category-carts-items{
+    justify-content: center;
+    }
+
 }

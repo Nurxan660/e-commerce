@@ -12,9 +12,11 @@ function App() {
         <Route exact path='/' element={<Home />} />
         <Route exact path='/smartphones' element={<Category/>} />
         <Route exact path='/laptops' element={<Category/>} />
+         
       </Routes>
+        <Footer />
       </main>
-      <Footer />
+      
     </BrowserRouter >
     
   );
