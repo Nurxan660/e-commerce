@@ -41,9 +41,10 @@ function Navbar() {
                         </button>
                         {open&&(
                         <div class="dropdown">
+                            
                                 <ul className="dropdown-category-content">
-                                    <li className="dropdown-category-item">Login</li>
-                                    <li className="dropdown-category-item">Registration</li>
+                                    <Link to="login" className='log-nav'><li className="dropdown-category-item">Login</li></Link> 
+                                    <Link to="registration" className='reg-nav'><li className="dropdown-category-item">Registration</li></Link> 
                             </ul>
                         </div>)}
                     </div>
