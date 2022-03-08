@@ -1,6 +1,7 @@
 .pageNumbers{
     list-style: none;
     display: flex;
+    margin-bottom: 10px;
 }
 .pageNumbers li {
     padding: 10px;

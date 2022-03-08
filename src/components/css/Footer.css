@@ -5,14 +5,18 @@ footer{
     justify-content: center;
     align-items: center;
     width: 100%;
+    margin-top: auto;
 }
 .footer{
     color: #6c757d
     
     
 }
-main{
+.main{
+    margin-top: 65px;  
+}
+/*main{
    min-height: 100vh;
   
-}
+}*/
 

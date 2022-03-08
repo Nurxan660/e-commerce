@@ -2,14 +2,21 @@
 body,html{
     margin:0;
     padding:0;
-   
+    height: 100%;
 }
 
 
-#root{
+/*#root{
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  
+}*/
+#root{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+ 
   
 }
 
