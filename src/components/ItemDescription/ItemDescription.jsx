@@ -1,8 +1,11 @@
 import React from 'react'
-import '../css/ItemDescription.css'
 import DescriptionSlider from '../ItemDescriptionSlider/DescriptionSlider'
+import ItemPropertiesTab from './ItemPropertiesTab'
+import '../css/ItemDescription.css'
+
 function ItemDescription() {
   return (
+    <>
     <div className="item-category">
         <div className="category-name">
               <span>All products / Phones</span>
@@ -23,6 +26,8 @@ function ItemDescription() {
           </div>
           </div>
         </div>
+        <ItemPropertiesTab/>
+        </>
   )
 }
 

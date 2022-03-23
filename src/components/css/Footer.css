@@ -13,8 +13,18 @@ footer{
     
 }
 .main{
+    
     margin-top: 65px;  
+    min-height: inherit;
+    align-self: center;
+    width: 1400px;
 }
+
+@media  screen and (max-width:1400px) {
+    .main{
+        width: 100%;
+    }
+  }
 /*main{
    min-height: 100vh;
   
