@@ -2,7 +2,6 @@ import React,{useState} from 'react'
 import Properties from './TabsContent/Properties';
 import Reviews from './TabsContent/Reviews';
 import Availability from './TabsContent/Availability';
-import '../css/ItemProperties.css'
 const ItemPropertiesTab = () => {
   const [active,setActive]=useState('properties');
 
