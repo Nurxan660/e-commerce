@@ -1,4 +1,4 @@
-import Navbar from './components/Navbar.jsx'
+import Navbar from './Navbar/Navbar.jsx'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './components/Home.jsx'
 import Footer from './components/Footer.jsx'
@@ -13,8 +13,7 @@ function App() {
       <main className="main">
       <Routes>
         <Route exact path='/' element={<Home />} />
-        <Route exact path='/smartphones' element={<Category/>} />
-        <Route exact path='/laptops' element={<Category/>} />
+        <Route exact path='/category/:id' element={<Category/>} />
         <Route exact path='/description' element={<ItemDescription/>} />
         <Route exact path='/registration' element={<RegistrationForm/>} />
         <Route exact path='/login' element={<LoginForm/>} />

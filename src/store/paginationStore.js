@@ -1,5 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import ItemsByCategory from "./itemsByCategory";
+import { toJS } from "mobx";
 
  class PaginationStore {
      data=[];
@@ -18,6 +19,7 @@ import ItemsByCategory from "./itemsByCategory";
          for (let i = 1; i <= Math.ceil(this.data.length / this.itemsPerPage); i++) {
              this.pages.push(i);
          }
+
      }
 
      handleClick(event){
@@ -39,6 +41,7 @@ import ItemsByCategory from "./itemsByCategory";
 
     changeData(){
         this.data=ItemsByCategory.allItems
+        console.log(toJS(this.data))
     }
 
     handleNextButton(){

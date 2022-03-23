@@ -5,7 +5,9 @@ import {Link} from 'react-router-dom'
 function CategoryCartsItems({ item }) {
     return (
         <div className="category-cart-item">
-            <img className="category-cart-item-photo" src={item.src} />
+            <div className='category-cart-item-photo'>
+            <img  src={item.imagesList[0].url} />
+            </div>
             <div className="category-cart-item-body">
                 <span className='category-cart-item-name'>{item.name}</span>
                 <span className='category-cart-item-price'>{item.price}</span>

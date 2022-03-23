@@ -3,16 +3,9 @@ import '../css/Pagination.css'
 import PaginationStore from '../../store/paginationStore';
 import { observer } from 'mobx-react-lite';
 
-
 const Pagination=observer(()=>{
     
-    useEffect(() => {
-        PaginationStore.changeData();
-        PaginationStore.addPage();
-        
-
-      }, []);
-     
+    
     const handleClick=(event)=>{
         PaginationStore.handleClick(Number(event.target.id))
         
@@ -40,7 +33,7 @@ const Pagination=observer(()=>{
             <li className="move" onClick={handlePrevButton} >Prev</li>
             {PaginationStore.maxPageNum>=4&&<li onClick={()=>{PaginationStore.handleStartButton()}}>...</li>}
                     {PaginationStore.pages.map((n) => n<=PaginationStore.maxPageNum&&n>=PaginationStore.minPageNum ? (
-                      <li key={n} id={n} className={PaginationStore.getCurrentPage==n?"active":null} onClick={handleClick}  >
+                      <li key={n}  className={PaginationStore.getCurrentPage==n?"active":null} onClick={handleClick}  >
                           {n}
                       </li>
                     ):null

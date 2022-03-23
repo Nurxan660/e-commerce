@@ -4,10 +4,12 @@ import './css/PopularCartItem.css'
 function PopularCartsItems({item}) {
   return (
               <div className="popular-cart-item">
-          <img className="popular-cart-item-photo" src={item.src}/>
+          <div className="popular-cart-item-photo">
+            <img src={item.images[0].url}/>
+            </div>
                   <div className="popular-cart-item-body">
-              <span className='popular-cart-item-name'>{item.name}</span>
-              <span className='popular-cart-item-price'>{item.price}</span>
+              <span className='popular-cart-item-name'>{item.itemName}</span>
+              <span className='popular-cart-item-price'>{item.itemPrice}</span>
               <button className='popular-cart-item-button'>Details</button>
                   </div>
               </div>

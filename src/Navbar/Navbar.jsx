@@ -1,16 +1,15 @@
 import React,{useState} from 'react';
-import './css/Navbar.css'
+import '../components/css/Navbar.css'
 import {Link} from 'react-router-dom'
+import NavbarCategory from './NavbarCategory';
 function Navbar() {
     const [open, setOpen] = useState(false);
-    const [openCategory, setOpenCategory] = useState(false);
-
+    
     const handleButton=()=>{
         setOpen(!open);
     }
-    const handleCategory = () => {
-        setOpenCategory(!openCategory);
-    }
+
+    
     return (
         <header>
     <nav className="navbar">
@@ -22,14 +21,7 @@ function Navbar() {
             </div>
             <div className="nav-item-items">
                     <div className="nav-category">
-                    <span className="nav-category-text" onClick={handleCategory}>Category</span>
-                        {openCategory && (
-                            <div class="dropdown-category">
-                                <ul className="dropdown-category-content">
-                                    <Link to='/laptops' className='laptops'><li className="dropdown-category-item">Laptops</li></Link>
-                                    <Link to='/smartphones' className='smartphones'><li className="dropdown-category-item">Smartphones</li></Link>
-                                </ul>
-                            </div>)}
+                    <NavbarCategory/>
                     </div>
                     <div className="nav-cart">
                         <span className="icon"><img src="https://img.icons8.com/material-rounded/24/000000/shopping-cart.png"/></span>

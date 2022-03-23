@@ -18,10 +18,23 @@
     border: 1px solid rgba(0,0,0,.125) ;
     border-radius: 7px;
 }
+.popular-cart-item-photo{
+    height: 184px;
+    width: 286px;
+    background-color: white;
+}
+.popular-cart-item-photo img{
+    width: 100%;
+    height: 100%;
+    object-fit:contain;
+}
+
 .popular-cart-item-body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 184px;
+    width: 286px;
 
 }
 .popular-cart-item-name,
@@ -33,6 +46,7 @@
 .popular-cart-item-name{
     font-weight: bold;
     font-size: 20px;
+    text-align: center;
 }
 .popular-cart-item-price{
     color: #6c757d
