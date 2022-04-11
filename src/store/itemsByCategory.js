@@ -9,7 +9,7 @@ import { makeAutoObservable } from "mobx";
      }
 
      setItems(data){
-         this.items=[...data]
+         this.items=data
      }
 
      

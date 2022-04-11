@@ -2,30 +2,37 @@ import React,{useEffect} from 'react';
 import "../css/Category.css";
 import CategoryCarts from './CategoryCarts.jsx'
 import CategoryFilterItem from './CategoryFilterItem.jsx'
-import Pagination from '../Pagination/Pagination.jsx'
-import ItemsByCategory from '../../store/itemsByCategory';
+import ItemPagination from '../Pagination/Pagination';
 import { observer } from 'mobx-react-lite';
-import PaginationStore from '../../store/paginationStore';
 import contentByCategory from '../../store/contentByCategory';
 import { getSubCharacteristics } from '../../service/categoryService';
 import { getItemsByCategory } from '../../service/itemService';
+import ItemsByCategory from '../../store/itemsByCategory';
 import { useParams } from 'react-router-dom';
-
+import { toJS } from 'mobx';
+import paginationStore from '../../store/paginationStore';
 const Category = observer(() => {
     const params=useParams();
-    
+    console.log(contentByCategory.properties[0])
     useEffect(()=>{
+
         getSubCharacteristics(params.id).then((res)=>{
             contentByCategory.setProperties(res.data)
+            console.log('data',toJS(contentByCategory.properties[0].values[0].category.name))
+
+
+          
         }).then(()=>{
-            getItemsByCategory(params.id).then((res)=>{
-                ItemsByCategory.setItems(res.data)
-                PaginationStore.changeData()
-                PaginationStore.addPage();
+             
+            getItemsByCategory(params.id,paginationStore.page-1,8).then((res)=>{
+                console.log("данные с бэка:",res.data)
+                ItemsByCategory.setItems(res.data.content)
+               paginationStore.setCount(res.data.totalPages)
             })
         })
-    },[contentByCategory.urlId])
-
+    },[contentByCategory.urlId,paginationStore.page])
+    
+   
     
     
     
@@ -33,16 +40,19 @@ const Category = observer(() => {
 
   
     
+
   return (
+      
       <>
+      
       <div className="category">
           <div className="category-name">
-              <span>All products / Phones</span>
+              <span>{'/'+contentByCategory?.properties?.[0]?.values?.[0]?.category?.name}</span>
           </div>
           <div className="category-content">
               <div className="category-filter">
                   <ul className="filter-content">
-                      {contentByCategory.properties.map((i)=>{
+                      {  ((i)=>{
                       return <CategoryFilterItem item={i}/>
                      })}
                       <li className="filter-content-item" id="price-range">
@@ -63,12 +73,15 @@ const Category = observer(() => {
                   </ul>
               </div>
 
-                  <CategoryCarts items={PaginationStore.currentItems} />
+                  <CategoryCarts items={ItemsByCategory.items} />
           </div>
       </div>
-          <Pagination data={ItemsByCategory.allItems} />
+          <ItemPagination  />
       </>
   );
+
+  
+  
 })
 
 export default Category;

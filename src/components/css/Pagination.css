@@ -1,21 +1,5 @@
 .pageNumbers{
-    list-style: none;
     display: flex;
-    margin-bottom: 10px;
-    width: 100%;
-}
-.pageNumbers li {
-    padding: 10px;
-    border:1px solid black;
-    cursor:pointer;
-}
-
-.pageNumbers li.active{
-    background-color: black;
-    color: white;
-}
-.move:hover{
-    background-color: black;
-    color: white;
-    border: 1px white solid;
+    justify-content: center;
+    margin-bottom: 5px;
 }

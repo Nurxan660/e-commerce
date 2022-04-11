@@ -1,9 +1,10 @@
 import React from "react";
-
-function DescriptionDots({ activeIndex, onclick, sliderImage }) {
+import descriptionStore from "../../store/descriptionStore";
+import { observer } from "mobx-react-lite";
+const DescriptionDots=observer(({onclick,activeIndex})=>{
     return (
         <div className="description-all-dots">
-            {sliderImage.map((slide, index) => (
+            {descriptionStore.images.map((slide, index) => (
                 <span
                     key={index}
                     className={`${activeIndex === index ? "desc-dot desc-active-dot" : "desc-dot"}`}
@@ -11,7 +12,7 @@ function DescriptionDots({ activeIndex, onclick, sliderImage }) {
                 ></span>
             ))}
         </div>
-    );
-}
-
+    
+            );
+        })
 export default DescriptionDots;

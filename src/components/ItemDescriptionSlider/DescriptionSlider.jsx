@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react"
 import sliderImage from "../Slider/sliderImage";
 import "../css/Slider.css";
-import SliderContent from "../Slider/SliderContent";
+import DescriptionSliderContent from "./DescriptionSliderContent";
 import DescriptionDots from "./DescriptionDots";
 
-const len = sliderImage.length - 1;
 
 function DescriptionSlider(props) {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -13,11 +12,11 @@ function DescriptionSlider(props) {
 
     return (
         <div className="description-slider-container">
-            <SliderContent activeIndex={activeIndex} sliderImage={sliderImage} />
+            <DescriptionSliderContent activeIndex={activeIndex}  />
             
             <DescriptionDots
                 activeIndex={activeIndex}
-                sliderImage={sliderImage}
+            
                 onclick={(activeIndex) => setActiveIndex(activeIndex)}
             />
         </div>

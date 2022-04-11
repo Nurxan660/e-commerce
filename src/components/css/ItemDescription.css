@@ -1,4 +1,5 @@
 .item-category {
+    margin-top: 20px;
     margin-left: 60px;
     margin-right: 60px;
     padding-bottom: 139px;
@@ -68,17 +69,7 @@
     padding-bottom: 13px;
 }
 
-.details-key {
-    margin-top: 15px;
-    position: relative;
-    font-weight: bold;
-}
 
-.details-value {
-    position: absolute;
-    left: 160px;
-    font-weight: normal;
-}
 
 .details-description {
     width: 100%;
@@ -88,6 +79,8 @@
     display: flex;
     list-style: none;
     margin-left: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 }
 .item-properties-buttons li {
     border: 1px solid rgb(211, 194, 194);
@@ -107,12 +100,15 @@
     color: orange;
 }
 .outlet {
-    display: grid;
+    display: flex;
     flex-wrap: wrap;
-    grid-template-columns: 1fr 1fr;
-    max-width: 1131px;
-    grid-gap: 20px;
+    flex-direction: row;
+    margin-left: 53px;
+  padding-top: 15px;
+ 
 }
+
+
 
 .item-properties-tab {
     margin-left: 60px;
@@ -123,10 +119,10 @@
     border-radius: 4px;
 }
 .properties-content {
-    border: 1px solid black;
-    /* width: 480px; */
-    height: 100%;
-    padding: 10px;
+  width:480px;
+  padding: 10px;
+  margin-left: 10px;
+  margin-top: 10px;
 }
 .properties-name {
     list-style: none;
@@ -136,6 +132,19 @@
     margin-top: 9px;
     word-wrap: break-word;
 }
+
+.item-description-properties{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.item-description-properties h3, p{
+    margin-top: 15px;
+}
+.item-description-properties p{
+    font-weight: normal;
+}
+
 
 @media screen and (max-width: 872px) {
     .item-description-content {

@@ -6,6 +6,7 @@ class ContentByCategory{
     items=[]
     properties=[]
     urlId=null
+    categoryName=''
 
     constructor(){
         makeAutoObservable(this)
@@ -20,6 +21,10 @@ class ContentByCategory{
     }
     setUrlId(id){
         this.urlId=id
+    }
+    
+    setCategoryName(name){
+        this.categoryName=name
     }
 
     

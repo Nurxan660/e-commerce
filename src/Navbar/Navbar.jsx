@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import '../components/css/Navbar.css'
 import {Link} from 'react-router-dom'
 import NavbarCategory from './NavbarCategory';
@@ -8,7 +8,18 @@ function Navbar() {
     const handleButton=()=>{
         setOpen(!open);
     }
+    
+    useEffect(()=>{
+        const closeButton = () => {
+            if(open){
+                setOpen(false);
+            }
+        }
+            window.addEventListener('click',closeButton)
+            return ()=>{ window.removeEventListener('click',closeButton)}
+    },[open])
 
+ 
     
     return (
         <header>

@@ -22,8 +22,8 @@ const ItemPropertiesTab = () => {
           <li className={active=='avalibility'?'active':''} onClick={handleAvalibilityClick}>Наличие товара</li>
         </ul>
         <div className="outlet">
-          {active=='properties'?<Properties/>:null}
-          {active=='rewiews'?<Reviews/>:null}
+          {active==='properties'?<Properties/>:null}
+          {active==='rewiews'?<Reviews/>:null}
           {active=='avalibility'?<Availability/>:null}
         </div>
     </div>
