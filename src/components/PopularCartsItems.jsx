@@ -8,8 +8,8 @@ function PopularCartsItems({item}) {
             <img src={item.images[0].urls}/>
             </div>
                   <div className="popular-cart-item-body">
-              <span className='popular-cart-item-name'>{item.itemName}</span>
-              <span className='popular-cart-item-price'>{item.itemPrice}</span>
+              <span className='popular-cart-item-name'>{item.name}</span>
+              <span className='popular-cart-item-price'>{item.price}</span>
               <Link to={`/description/${item.itmId}`} className='description'><button className='popular-cart-item-button'>Details</button></Link>
                   </div>
               </div>

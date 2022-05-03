@@ -7,6 +7,7 @@ class ContentByCategory{
     properties=[]
     urlId=null
     categoryName=''
+    checked=[]
 
     constructor(){
         makeAutoObservable(this)
@@ -25,6 +26,9 @@ class ContentByCategory{
     
     setCategoryName(name){
         this.categoryName=name
+    }
+    setChecked(ids){
+        this.checked=ids
     }
 
     

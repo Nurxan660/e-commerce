@@ -1,36 +1,85 @@
-import React,{useState} from 'react'
+import React,{useRef, useState} from 'react'
 import '../css/Form.css'
+import Alert from '@mui/material/Alert';
+import { reg } from '../../service/authService';
+import {isEmail} from 'validator'
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import CheckButton from "react-validation/build/button";
+import { useNavigate } from 'react-router-dom';
+import { observer } from 'mobx-react-lite';
+import authStore from '../../store/authStore';
+const validEmail=(value)=>{
+    
+    if(!isEmail(value)){
+        return (
+        <Alert severity="error">This is not valid email</Alert>
+        )
+    }
+}
 
-function RegistrationForm() {
-  const [firstName,setFirstName]=useState('');
-  const [lastName,setLastName]=useState('');
-  const [nickname,setNickname]=useState('');
+const required = (value) => {
+    if (!value) {
+      return (
+        <Alert severity="error">This field is required</Alert>
 
-const [email,setEmail]=useState('');
-const [password, setPassword] = useState('');
+      );
+    }
+  };
+  const validName=(value)=>{
+      if(value.length<3||value.length>20){
+        return <Alert severity="error">The username must be between 3 and 20 characters</Alert>
+      }
+  }
+
+  const validPassword=(value)=>{
+    if(value.length<6||value.length>40){
+      return <Alert severity="error">The password must be between 6 and 40 characters</Alert>
+    }
+}
+const RegistrationForm=observer(()=>{
+    const navigate=useNavigate()
+    const form=useRef()
+    const checkBtn = useRef();
+ 
+
+    
     
 
 const onChangeEmail=(e)=>{
-    
-    setEmail(e.target.value);
+    authStore.setEmail(e.target.value)
 }
     const onChangePas = (e) => {
        
-        setPassword(e.target.value);
+        authStore.setPassword(e.target.value);
     }
-    const onChangeName = (e) => {
-       
-        setFirstName(e.target.value);
-        
-    }
+   
     const onChangeNic = (e) => {
        
-        setNickname(e.target.value);
+        authStore.setNickname(e.target.value);
     }
-    const onChangeLast = (e) => {
-       
-        setLastName(e.target.value);
+    
+
+    const handleOnSubmit=(e)=>{
+        e.preventDefault();
         
+        form.current.validateAll()
+        if (checkBtn.current.context._errors.length === 0) {
+        reg(authStore.nickname,authStore.email, authStore.password)
+    .then((res)=>{
+        authStore.setNickname('');
+        authStore.setPassword('');
+        authStore.setEmail('');
+        authStore.setMessage(res.data.message)
+        authStore.setSucess(true)
+        navigate("/login")
+    })
+    .catch((err)=>{
+        authStore.setMessage(err.response.data.message)
+        authStore.setSucess(false)
+        
+    })
+}
     }
 
 
@@ -39,40 +88,40 @@ const onChangeEmail=(e)=>{
     <div className="container-auth">
 <div className="header">Registration</div>
        
-        <form >
+        <Form onSubmit={handleOnSubmit} ref={form} >
+            
         <div className="form">
-<div className='form-group'>
-                    <label for="firstName">Name</label>
-                    <input className="formInput" type="text" name="firstName" value={firstName} onChange={onChangeName}  placeholder="name"></input>
-</div>
-<div className='form-group'>
-                    <label for="firstName">SurName</label>
-                    <input className="formInput" type="text" name="firstName" value={lastName} onChange={onChangeLast}  placeholder="lastname"></input>
-</div>
+
 
         <div className='form-group'>
                     <label for="nickname">Email</label>
-                    <input className="formInput"  type="text" name="nickname" value={email} onChange={onChangeEmail} placeholder="email"></input>
+                    <Input className="formInput"  type="text" name="nickname" value={authStore.email} onChange={onChangeEmail} placeholder="email" validations={[validEmail,required]}/>
         </div>
         <div className='form-group'>
                     <label for="nickname">Nickname</label>
-                    <input className="formInput"  type="text" name="nickname" value={nickname} onChange={onChangeNic} placeholder="nickname"></input>
+                    <Input className="formInput"  type="text" name="nickname" value={authStore.nickname} onChange={onChangeNic} placeholder="nickname" validations={[required,validName]} />
         </div>
         <div className='form-group'>
             <label for="password">Password</label>
-                    <input className="formInput"  type="password" name="password" value={password} onChange={onChangePas}  placeholder="password"></input>
+                    <Input className="formInput"  type="password" name="password" value={authStore.password} onChange={onChangePas}  placeholder="password" validations={[required,validPassword]}/>
         </div>
     </div>
 
-                    
-    <div className='footer'>
-               <button type="submit" className='btn'>Registration</button> 
+    {authStore.message&&
+    ( <div className="auth-alert">
+        {authStore.sucess?"":<Alert severity="error">{authStore.message}</Alert>}
     </div>
-</form>
+    )
+    }                    
+    <div className='footer'>
+               <button type="submit" className='btn' >Registration</button> 
+    </div>
+    <CheckButton style={{ display: "none" }} ref={checkBtn} />
+    </Form>
        
 </div>
 </div>
   )
-}
+})
 
 export default RegistrationForm

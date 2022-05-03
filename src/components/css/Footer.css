@@ -15,14 +15,19 @@ footer{
 .main{
     
     margin-top: 65px;  
-    min-height: inherit;
     align-self: center;
-    width: 1400px;
+    justify-content: center;
+    flex: 1 1 auto;
 }
 
 @media  screen and (max-width:1400px) {
     .main{
         width: 100%;
+    }
+  }
+  @media  screen and (min-width:1401px) {
+    .main{
+        width: 1400px;
     }
   }
 /*main{

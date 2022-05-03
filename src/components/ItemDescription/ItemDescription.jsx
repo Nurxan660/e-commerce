@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React,{useEffect, useState} from 'react'
 import DescriptionSlider from '../ItemDescriptionSlider/DescriptionSlider'
 import ItemPropertiesTab from './ItemPropertiesTab'
 import '../css/ItemDescription.css'
@@ -7,13 +7,27 @@ import { useParams } from 'react-router-dom'
 import { observer } from 'mobx-react-lite'
 import description from '../../store/descriptionStore'
 import { getItemsWithDetailProperties } from '../../service/itemService'
-import { toJS } from 'mobx'
+import { addCart } from '../../service/cartService'
+import { getUser } from '../../service/tokenService'
+import Modal from './Modal'
+import Alert from '@mui/material/Alert';
+import descriptionStore from '../../store/descriptionStore'
+
+
 
     const ItemDescription=observer(()=>{
 
   const params=useParams()
+  const user=getUser();
 
-    
+  const [open, setOpen] = React.useState(false);
+  const [sucessMessage,setSuccessMessage]=useState('')
+
+  
+
+  const handleClose = () => {
+    setOpen(false);
+  };
     useEffect(()=>{
         getItemsWithSimpleProperties(params.id).then((res)=>{
           description.setSimpleDescription(res.data)
@@ -28,6 +42,22 @@ import { toJS } from 'mobx'
     
     },[]) 
 
+    const handleAddToCartButton=(e)=>{
+      if(user){
+        addCart(description.simpleDescription.itmId,user?.id,1).then((res)=>{
+          descriptionStore.setUpdate()
+          setSuccessMessage(res.data)
+          setTimeout(()=>{
+            setSuccessMessage('')
+          },2000)
+        })
+      }
+      else{
+        setOpen(true);
+      }
+      
+    }
+
   return (
     <>
     <div className="item-category">
@@ -39,7 +69,11 @@ import { toJS } from 'mobx'
           <div className="item-description">
               <h1>{description.simpleDescription.name}</h1>
               <h2 className="item-price">{description.simpleDescription.price}</h2>
-              <button>Add to cart</button>
+              <button onClick={handleAddToCartButton}>Add to cart</button>
+              {sucessMessage&&
+                <Alert severity="success" className="cart-alert">{sucessMessage}</Alert>
+               }
+              <Modal handleClose={handleClose} open={open}/>
               <h2 className='details'>Details</h2>
                 {description.simpleDescriptionProperties!=null?description.simpleDescriptionProperties.map(d=>
                    <div className="item-description-properties">

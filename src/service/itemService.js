@@ -18,5 +18,8 @@ const getItemsWithDetailProperties=(id)=>{
     return axios.get(API_URL+`item/get/itemsWithDetailProperties?id=${id}`)
 }
 
+const getItemsByFilter=(size,page,minPrice,maxPrice,ids)=>{
+    return axios.post(API_URL+`item/get/itemsByFilter?size=${size}&page=${page}&minPrice=${minPrice}&maxPrice=${maxPrice}`,{ids})
+}
 
-export {getPopularItems,getItemsByCategory,getItemsWithSimpleProperties,getItemsWithDetailProperties}
+export {getPopularItems,getItemsByCategory,getItemsWithSimpleProperties,getItemsWithDetailProperties,getItemsByFilter}

@@ -18,18 +18,7 @@ const NavbarCategory = () => {
           setCategories([...res.data])
       })
     },[])
-    useEffect(()=>{
-        const closeCategory = () => {
-            if(openCategory){
-            setOpenCategory(false);
-            }
-        }
-        
-            window.addEventListener('click',closeCategory)
-            
-            return ()=>{ window.removeEventListener('click',closeCategory)}
-            
-    },[openCategory])
+   
 
     
 

@@ -1,0 +1,77 @@
+.cart-contents{
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+}
+.cart-content-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    border: 1px solid black;
+    margin-top: 10px;
+    padding: 10px;
+
+    
+}
+
+.plus,.minus{
+    height: 30px;
+    width: 20px;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    margin-left: 40px;
+}
+.minus:hover{
+    color: white;
+    background-color: black;
+}
+.plus:hover{
+    color: white;
+    background-color: black;
+}
+.order button{
+    width: 100px;
+    border-radius: 20px;
+    background-color: black;
+    border: 1px solid black;
+    color:white;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.order button:hover{
+ border: none;
+ background-color: orange;
+ color: black;
+}
+.order{
+    text-align: center;
+}
+.delete-cart{
+    margin-left: 15px;
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.payment-radio{
+    margin-top: 15px;
+}
+.changeAddress{
+    margin-top: 10px;
+    text-align: center;
+    
+}
+.changeAddress button{
+    background-color: gray;
+    color:white;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.changeAddress button:hover{
+    background-color: black;
+}

@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React,{useEffect, useState} from 'react';
 import "../css/Category.css";
 import CategoryCarts from './CategoryCarts.jsx'
 import CategoryFilterItem from './CategoryFilterItem.jsx'
@@ -6,15 +6,25 @@ import ItemPagination from '../Pagination/Pagination';
 import { observer } from 'mobx-react-lite';
 import contentByCategory from '../../store/contentByCategory';
 import { getSubCharacteristics } from '../../service/categoryService';
-import { getItemsByCategory } from '../../service/itemService';
+import { getItemsByCategory,getItemsByFilter } from '../../service/itemService';
 import ItemsByCategory from '../../store/itemsByCategory';
 import { useParams } from 'react-router-dom';
 import { toJS } from 'mobx';
 import paginationStore from '../../store/paginationStore';
 const Category = observer(() => {
     const params=useParams();
-    console.log(contentByCategory.properties[0])
+    const [minPrice,setMinPrice]=useState(0)
+        const [maxPrice,setMaxPrice]=useState(10000000)
+
+        const onChangeMin=(e)=>{
+            setMinPrice(e.target.value)
+        }
+
+        const onChangeMax=(e)=>{
+            setMaxPrice(e.target.value)
+        }
     useEffect(()=>{
+        
 
         getSubCharacteristics(params.id).then((res)=>{
             contentByCategory.setProperties(res.data)
@@ -31,6 +41,12 @@ const Category = observer(() => {
             })
         })
     },[contentByCategory.urlId,paginationStore.page])
+
+    const handleButton=()=>{
+        getItemsByFilter(8,paginationStore.page-1,minPrice,maxPrice,contentByCategory.checked.join(',')).then((res)=>{
+            ItemsByCategory.setItems(res.data.content)
+        })
+    }
     
    
     
@@ -52,21 +68,19 @@ const Category = observer(() => {
           <div className="category-content">
               <div className="category-filter">
                   <ul className="filter-content">
-                      {  ((i)=>{
-                      return <CategoryFilterItem item={i}/>
-                     })}
+                      <CategoryFilterItem />
                       <li className="filter-content-item" id="price-range">
                           <h3>Price Range</h3>
                           <div className="price-range-content">
                               <div className="min-price-content">
-                                  <input className="price-range"type="text" placeholder='Min Price'/>
+                                  <input className="price-range"type="text" placeholder='Min Price' onChange={onChangeMin} value={minPrice}/>
                                 
                               </div>
                               <div className="max-price-content">
-                                  <input className="price-range" type="text" placeholder='Max Price' />
+                                  <input className="price-range" type="text" placeholder='Max Price' onChange={onChangeMax} value={maxPrice} />
                               </div>
                               <div className="apply-button">
-                              <button className="filter-button">Apply</button>
+                              <button className="filter-button" onClick={handleButton}>Apply</button>
                               </div>
                           </div>
                       </li>

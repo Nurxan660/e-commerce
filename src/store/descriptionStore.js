@@ -4,6 +4,7 @@ class Description{
     simpleDescriptionProperties=[]
     detailDescription=[]
     images=[]
+    update=false
 
     constructor(){
         makeAutoObservable(this)
@@ -21,6 +22,9 @@ class Description{
     }
     setImages(data){
         this.images=data
+    }
+    setUpdate(){
+        this.update=!this.update
     }
     
 

@@ -10,6 +10,7 @@
 }
 .log{
      display: flex;
+     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%;
@@ -17,6 +18,12 @@
 
    
 
+}
+.reg-login-alert{
+    margin-top: 40px;
+}
+.error-alert{
+    width: 100%;
 }
 .header{
     font-size: 24px;
@@ -30,6 +37,7 @@
     border: 0;
     padding:40px 20px 10px ;
      box-shadow:0px 0px 9px  gray;
+     width: 328px;
      
  
 }
@@ -110,6 +118,9 @@ label {
 
 .log-nav,.reg-nav{
     text-decoration: none;
+}
+.auth-alert{
+    margin-top: 9px;
 }
 
 
